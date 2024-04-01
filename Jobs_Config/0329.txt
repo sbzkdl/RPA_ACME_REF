@@ -1,0 +1,5 @@
+<워크플로우 연결하기>
+- Sequence_Main.xaml 생성 후 기존에 만들었던 워크플로우를 Invoke하여 연결한다.
+
+- Data\Config.xlsx 에 저장한 값을 Dictionary로 불러와서 dicConfig 변수를 활용한다.
+- 기존에 만들었던 04,05,06번 워크플로우에서 For 문을 제거, Sequence_Main에서 CurrentRow를 04,05,06번 워크플로우에 인수로 집어 넣어 연결한다.
