@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Sequence_Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1207,2100" sap2010:WorkflowViewState.IdRef="Sequence_Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Sequence_Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="598,1978" sap2010:WorkflowViewState.IdRef="Sequence_Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -90,19 +90,21 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Sequence_Main" sap:VirtualizedContainerService.HintSize="608,2035" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="Sequence_Main" sap:VirtualizedContainerService.HintSize="608,1913" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="dicConfig" />
-      <Variable x:TypeArguments="x:String" Name="strACME_URL" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtWorkItems">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="New System.Data.DataTable" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dtWorkItems" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\InitAllSettings.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="546,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
@@ -112,42 +114,28 @@
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[dicConfig]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <Assign sap:VirtualizedContainerService.HintSize="546,122" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[strACME_URL]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[dicConfig("ACME_URL").ToString]</InArgument>
-      </Assign.Value>
-    </Assign>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\01_ACME_Login.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="546,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Jobs_Config\01_ACME_Login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strACME_URL">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strACME_URL" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strID">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="dicConfig(&quot;ACME_ID&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strPW">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="dicConfig(&quot;ACME_PW&quot;).ToString" />
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dicConfig">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="dicConfig" />
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\02_ACME_WI진입.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="546,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Jobs_Config\02_ACME_WI진입.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strACME_URL">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strACME_URL" />
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dicConfig">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="dicConfig" />
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\03_ACME_WI_전체DT추출.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="546,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Jobs_Config\03_ACME_WI_전체DT추출.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_strACME_URL">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strACME_URL" />
-        </InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtWorkItems">
           <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dtWorkItems" />
         </OutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dicConfig">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="dicConfig" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtWorkItems]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="546,1077" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
@@ -160,6 +148,7 @@
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If Condition="[WIRow(&quot;Type&quot;).ToString.Trim = &quot;WI5&quot;]" sap:VirtualizedContainerService.HintSize="450,788" sap2010:WorkflowViewState.IdRef="If_1">
@@ -172,37 +161,34 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\04_ACME_Client정보추출.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="354,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Jobs_Config\04_ACME_Client정보추출.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="sd:DataRow" x:Key="in_WIRow">
-                        <VisualBasicValue x:TypeArguments="sd:DataRow" ExpressionText="WIRow" />
-                      </InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_strACME_URL">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strACME_URL" />
-                      </InArgument>
-                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtWorkItems">
-                        <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dtWorkItems" />
+                      <InOutArgument x:TypeArguments="sd:DataRow" x:Key="io_WIRow">
+                        <VisualBasicReference x:TypeArguments="sd:DataRow" ExpressionText="WIRow" />
                       </InOutArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dicConfig">
+                        <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="dicConfig" />
+                      </InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\05_SHA1_Hash수집.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="354,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Jobs_Config\05_SHA1_Hash수집.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="sd:DataRow" x:Key="in_WIRow">
-                        <VisualBasicValue x:TypeArguments="sd:DataRow" ExpressionText="WIRow" />
-                      </InArgument>
-                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtWorkItems">
-                        <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dtWorkItems" />
+                      <InOutArgument x:TypeArguments="sd:DataRow" x:Key="io_WIRow">
+                        <VisualBasicReference x:TypeArguments="sd:DataRow" ExpressionText="WIRow" />
                       </InOutArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_strSHA1_URL">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="dicConfig(&quot;SHA1_URL&quot;).ToString" />
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtWorkItems">
+                        <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dtWorkItems" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dicConfig">
+                        <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="dicConfig" />
                       </InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\06_ACME_UpdateWorkItem.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="354,136" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Jobs_Config\06_ACME_UpdateWorkItem.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_strACME_URL">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strACME_URL" />
-                      </InArgument>
                       <InArgument x:TypeArguments="sd:DataRow" x:Key="in_WIRow">
                         <VisualBasicValue x:TypeArguments="sd:DataRow" ExpressionText="WIRow" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dicConfig">
+                        <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="dicConfig" />
                       </InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>

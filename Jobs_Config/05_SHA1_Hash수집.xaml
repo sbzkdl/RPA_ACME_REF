@@ -1,16 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_05_SHA1_Hash수집" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_05_SHA1_Hash수집" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_WIRow" Type="InArgument(sd:DataRow)" />
-    <x:Property Name="io_dtWorkItems" Type="InOutArgument(sd:DataTable)" />
-    <x:Property Name="in_strSHA1_URL" Type="InArgument(x:String)" />
+    <x:Property Name="io_WIRow" Type="InOutArgument(sd:DataRow)" />
+    <x:Property Name="in_dtWorkItems" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_dicConfig" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
-  <this:_05_SHA1_Hash수집.in_strSHA1_URL>
-    <InArgument x:TypeArguments="x:String" />
-  </this:_05_SHA1_Hash수집.in_strSHA1_URL>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>582,1696</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1207,1696</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_05_SHA1_Hash수집_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -141,7 +138,7 @@
         <OutArgument x:TypeArguments="x:String">[strSearch]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[in_WIRow("Client ID").ToString+in_WIRow("Client Name").ToString+in_WIRow("Client Country").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String">[io_WIRow("Client ID").ToString+io_WIRow("Client Name").ToString+io_WIRow("Client Country").ToString]</InArgument>
       </Assign.Value>
     </Assign>
     <uix:NApplicationCard AttachMode="ByInstance" CloseMode="IfOpenedByAppBrowser" DisplayName="Use Browser Chrome: SHA1 online" sap:VirtualizedContainerService.HintSize="530,1036" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="cb98c40b-01dc-4350-9a04-58701d27962b" Version="V2">
@@ -172,7 +169,7 @@
             </uix:NGetText>
             <Assign sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
-                <OutArgument x:TypeArguments="x:Object">[in_WIRow("Hash")]</OutArgument>
+                <OutArgument x:TypeArguments="x:Object">[io_WIRow("Hash")]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:Object">[strSHA]</InArgument>
@@ -182,7 +179,7 @@
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABmSURBVDhPrczRDYAgDIRhH5nAFdx/B1zGJTBHcqY2FNrqw5ejCfm369wblaOG9QAevwWwJD9ahgG5K8sAlnBrroBcLRzAEu5UQO6nAKQDFAoQbnIHLNMA8fOIGfB6BUh/mnkCObXdA5Q5fU2oWVYAAAAASUVORK5CYII=" InformativeScreenshot="ae29918f3572cec63f3d0ef044a22c2f.jpg" Selector="&lt;html app='chrome.exe' title='SHA1 online' /&gt;" Title="SHA1 online" Url="[in_strSHA1_URL]" />
+        <uix:TargetApp Area="-8, -8, 1936, 1048" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABmSURBVDhPrczRDYAgDIRhH5nAFdx/B1zGJTBHcqY2FNrqw5ejCfm369wblaOG9QAevwWwJD9ahgG5K8sAlnBrroBcLRzAEu5UQO6nAKQDFAoQbnIHLNMA8fOIGfB6BUh/mnkCObXdA5Q5fU2oWVYAAAAASUVORK5CYII=" InformativeScreenshot="ae29918f3572cec63f3d0ef044a22c2f.jpg" Selector="&lt;html app='chrome.exe' title='SHA1 online' /&gt;" Title="SHA1 online" Url="[in_dicConfig(&quot;SHA1_URL&quot;).ToString]" />
       </uix:NApplicationCard.TargetApp>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -191,7 +188,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uix:NApplicationCard>
-    <ui:WriteRange AddHeaders="True" DataTable="[io_dtWorkItems]" DisplayName="테스트용 | Write Range Workbook" sap:VirtualizedContainerService.HintSize="530,156" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Hash" StartingCell="A1" WorkbookPath="Export/Test.xlsx" />
+    <ui:WriteRange AddHeaders="True" DataTable="[in_dtWorkItems]" DisplayName="테스트용 | Write Range Workbook" sap:VirtualizedContainerService.HintSize="530,156" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Hash" StartingCell="A1" WorkbookPath="Export/Test.xlsx" />
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Hash 추출 완료. .&quot;]" />
   </Sequence>
 </Activity>
