@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1207,2093</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1207,2126</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_04_ACME_Client정보추출_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -123,7 +123,7 @@
       <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_04_ACME_Client정보추출" sap:VirtualizedContainerService.HintSize="603,2028" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="_04_ACME_Client정보추출" sap:VirtualizedContainerService.HintSize="603,2061" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strAccountInfo" />
       <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(of String)]" Name="listInfo" />
@@ -164,7 +164,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uix:NApplicationCard>
-    <Sequence DisplayName="텍스트 가공 | Sequence" sap:VirtualizedContainerService.HintSize="541,1069" sap2010:WorkflowViewState.IdRef="Sequence_31">
+    <Sequence DisplayName="텍스트 가공 | Sequence" sap:VirtualizedContainerService.HintSize="541,1102" sap2010:WorkflowViewState.IdRef="Sequence_31">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="strClientID" />
         <Variable x:TypeArguments="x:String" Name="strClientName" />
@@ -176,7 +176,7 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="479,121" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign sap2010:Annotation.AnnotationText="가져오기에서 정규표현식 가져오기" sap:VirtualizedContainerService.HintSize="479,153" sap2010:WorkflowViewState.IdRef="Assign_5">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[strAccountInfo]</OutArgument>
         </Assign.To>
@@ -187,10 +187,11 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="479,121" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign sap:VirtualizedContainerService.HintSize="479,122" sap2010:WorkflowViewState.IdRef="Assign_6">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:List(x:String)">[listInfo]</OutArgument>
         </Assign.To>

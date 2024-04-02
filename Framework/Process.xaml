@@ -2,7 +2,8 @@
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="in_dt_TransactionData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="io_dt확인용" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="io_dt_TransactionData" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -128,8 +129,9 @@
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\05_SHA1_Hash수집.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="354,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Jobs_Config\05_SHA1_Hash수집.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InOutArgument x:TypeArguments="sd:DataRow" x:Key="io_WIRow">[in_TransactionItem]</InOutArgument>
-              <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dtWorkItems">[in_dt_TransactionData]</InArgument>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_dicConfig">[in_Config]</InArgument>
+              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt확인용">[io_dt확인용]</InOutArgument>
+              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtWorkItems">[io_dt_TransactionData]</InOutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Jobs_Config\06_ACME_UpdateWorkItem.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="354,136" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Jobs_Config\06_ACME_UpdateWorkItem.xaml">
